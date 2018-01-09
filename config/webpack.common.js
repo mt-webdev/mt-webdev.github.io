@@ -64,6 +64,11 @@ module.exports = {
             {
                 from: resolve('./src/service-worker.js'),
                 to: resolve(`${outDir}/sw.js`)
+            },
+            {
+                from: './src/app**/*',
+                to: resolve(outDir + '/app'),
+                flatten: true
             }
         ]),
         new CheckerPlugin() // needed for awesome-typescript-loader

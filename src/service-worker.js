@@ -1,4 +1,4 @@
-const appCache = 'mtwd-cv-0.0.7';
+const appCache = 'mtwd-cv-0.0.9';
 
 const CACHED_FILES = [
     '/app/home.html',
@@ -16,10 +16,7 @@ self.addEventListener('install', event => {
 self.addEventListener('fetch', event => {
     event.respondWith(
         caches.match(event.request)
-            .then(response => {
-                console.log('r', response);
-                return response || fetch(event.request);
-            })
+            .then(response => response || fetch(event.request))
             .catch(error => new Response('Dang it! This error again. Retry?!'))
     );
 });
