@@ -1,0 +1,8 @@
+{
+  "name": "mtwd-cv",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/mt-webdev/mtwd-cv.git",
+  "author": "Marco <mtraspel@hotmail.de>",
+  "license": "MIT"
+}
