@@ -1,0 +1,8 @@
+{
+    "name": "CV - mtwd",
+    "short_name": "CV",
+    "display": "standalone",
+    "background_color": "#333",
+    "theme_color": "#f7f7f7",
+    "description": "This is just a simple PWA CV of mine."
+}

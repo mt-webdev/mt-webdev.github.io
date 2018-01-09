@@ -1,5 +1,5 @@
 import { htmlTemplates } from './html-template.const';
-import { textToHtml } from './utils/index';
+import { textToHtml } from './app/utils/index';
 
 class Main {
     get rootSelector() { return 'APP-ROOT'; };

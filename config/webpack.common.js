@@ -62,7 +62,7 @@ module.exports = {
         new CleanWebpackPlugin([outDir]),
         new CopyWebpackPlugin([
             {
-                from: resolve('./src/service-worker.ts'),
+                from: resolve('./src/service-worker.js'),
                 to: resolve(`${outDir}/sw.js`)
             }
         ]),
