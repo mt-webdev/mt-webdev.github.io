@@ -1,0 +1,17 @@
+{
+    "compilerOptions": {
+        "noImplicitAny": false,
+        "removeComments": true,
+        "alwaysStrict": true,
+        "pretty": true,
+        "rootDir": "./src",
+        "sourceMap": true,
+        "target": "es2015",
+    },
+    "files": [
+        "./src/typings.d.ts"
+    ],
+    "awesomeTypescriptLoaderOptions": {
+        "useCache": true,
+    }
+}
