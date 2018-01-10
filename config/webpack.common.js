@@ -54,7 +54,7 @@ module.exports = {
                 loaders: ['file-loader']
             },
             {
-                test: /(manifest|web\.manifest)\.json$/,
+                test: /(web\.manifest|manifest)\.json$/,
                 loader: 'url-loader',
                 options: {
                     mimeType: 'application/manifest+json'
@@ -80,7 +80,12 @@ module.exports = {
             {
                 from: './src/web.manifest.json',
                 to: resolve(`${outDir}/manifest.json`)
-            }
+            },
+            {
+                from: './src/images**/*',
+                to: resolve(outDir + '/images'),
+                flatten: true
+            },
         ]),
         new CheckerPlugin() // needed for awesome-typescript-loader
     ],
