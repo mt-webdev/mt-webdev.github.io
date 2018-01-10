@@ -66,7 +66,11 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: 'src/index.html',
         }),
-        new CleanWebpackPlugin([outDir]),
+        new CleanWebpackPlugin([resolve('dist')], {
+            root: __dirname,
+            watch: true,
+            allowExternal: true
+        }),
         new CopyWebpackPlugin([
             {
                 from: resolve('./src/service-worker.js'),
