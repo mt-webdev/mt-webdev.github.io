@@ -52,6 +52,13 @@ module.exports = {
             {
                 test: /\.(png|gif|woff|woff2|eot|ttf|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
                 loaders: ['file-loader']
+            },
+            {
+                test: /(manifest|web\.manifest)\.json$/,
+                loader: 'url-loader',
+                options: {
+                    mimeType: 'application/manifest+json'
+                }
             }
         ]
     },
@@ -69,6 +76,10 @@ module.exports = {
                 from: './src/app**/*',
                 to: resolve(outDir + '/app'),
                 flatten: true
+            },
+            {
+                from: './src/web.manifest.json',
+                to: resolve(`${outDir}/manifest.json`)
             }
         ]),
         new CheckerPlugin() // needed for awesome-typescript-loader
