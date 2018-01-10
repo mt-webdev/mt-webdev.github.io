@@ -1,4 +1,4 @@
-const appCache = 'mtwd-cv-0.0.1';
+const appCache = 'mtwd-cv-0.0.2';
 
 const CACHED_FILES = [
     '/',
