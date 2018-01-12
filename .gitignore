@@ -9,3 +9,4 @@ typings/
 .eslintcache
 .awcache
 dist
+.cache

@@ -1,10 +1,10 @@
-const appCache = 'mtwd-cv-0.0.2';
+const appCache = 'mtwd-cv-0.0.3';
 
 const CACHED_FILES = [
     '/',
-    '/app/home.html',
-    '/app/notFound.html',
-    '/main.bundle.js'
+    'app/home.html',
+    'app/notFound.html',
+    'main.bundle.js'
 ];
 
 
@@ -13,7 +13,6 @@ self.addEventListener('install', event => {
         caches.open(appCache).then(cache => cache.addAll(CACHED_FILES))
     );
 });
-
 
 self.addEventListener('fetch', event => {
     event.respondWith(

@@ -4,6 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CheckerPlugin } = require('awesome-typescript-loader');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const { resolve, outDir } = require('./helpers');
 
@@ -22,23 +23,22 @@ module.exports = {
         libraryTarget: 'var',
     },
     resolve: {
-        extensions: ['.ts', '.js', '.json']
+        extensions: ['.ts', '.js', '.json', 'scss']
     },
     module: {
         rules: [
             {
-                test: /\.tsx?$/,
+                test: /\.ts?$/,
+                exclude: /(node_modules)/,
                 loader: 'awesome-typescript-loader'
             },
             {
                 test: /\.scss$/,
-                use: [{
-                    loader: "style-loader" // creates style nodes from JS strings
-                }, {
-                    loader: "css-loader" // translates CSS into CommonJS
-                }, {
-                    loader: "sass-loader" // compiles Sass to CSS
-                }]
+                exclude: /(node_modules)/,
+                loader: ExtractTextPlugin.extract({
+                    fallback: 'style-loader',
+                    use: 'css-loader!sass-loader'
+                })
             },
             {
                 test: /\.json$/,
@@ -46,6 +46,7 @@ module.exports = {
             },
             {
                 test: /\.html$/,
+                exclude: /(node_modules)/,
                 loader: 'raw-loader',
                 exclude: [resolve('src/index.html')]
             },
@@ -55,6 +56,7 @@ module.exports = {
             },
             {
                 test: /(web\.manifest|manifest)\.json$/,
+                exclude: /(node_modules)/,
                 loader: 'url-loader',
                 options: {
                     mimeType: 'application/manifest+json'
@@ -63,6 +65,7 @@ module.exports = {
         ]
     },
     plugins: [
+        new ExtractTextPlugin('[name].css'),
         new HtmlWebpackPlugin({
             template: 'src/index.html',
         }),

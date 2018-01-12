@@ -1,0 +1,60 @@
+<svg width="384" height="384" viewBox="0 0 384 384" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>MWTD_384x384</title>
+<desc>Created using Figma</desc>
+<g id="Canvas" transform="translate(-239 2610)">
+<clipPath id="clip-0" clip-rule="evenodd">
+<path d="M 239 -2610L 623 -2610L 623 -2226L 239 -2226L 239 -2610Z" fill="#FFFFFF"/>
+</clipPath>
+<g id="MWTD_384x384" clip-path="url(#clip-0)">
+<g id="MTWD" filter="url(#filter0_d)">
+<use xlink:href="#path0_fill" transform="translate(241 -2471)" fill="#FFFFFF"/>
+<use xlink:href="#path0_fill" transform="translate(241 -2471)" fill="url(#paint1_linear)"/>
+<use xlink:href="#path1_fill" transform="translate(241 -2471)" fill="#FFFFFF"/>
+<use xlink:href="#path1_fill" transform="translate(241 -2471)" fill="url(#paint3_linear)"/>
+<use xlink:href="#path2_fill" transform="translate(241 -2471)" fill="#FFFFFF"/>
+<use xlink:href="#path2_fill" transform="translate(241 -2471)" fill="url(#paint5_linear)"/>
+<use xlink:href="#path3_fill" transform="translate(241 -2471)" fill="#FFFFFF"/>
+<use xlink:href="#path3_fill" transform="translate(241 -2471)" fill="url(#paint7_linear)"/>
+</g>
+</g>
+</g>
+<defs>
+<filter id="filter0_d" filterUnits="userSpaceOnUse" x="237" y="-2471" width="388" height="114" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 255 0"/>
+<feOffset dx="0" dy="4"/>
+<feGaussianBlur stdDeviation="2"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape"/>
+</filter>
+<linearGradient id="paint1_linear" x1="0" y1="0" x2="1" y2="0" gradientUnits="userSpaceOnUse" gradientTransform="matrix(380.992 96.728 -346.761 1346 173.218 -668.074)">
+<stop offset="0" stop-color="#00CCE8"/>
+<stop offset="0.0804135" stop-color="#00E0FF"/>
+<stop offset="0.635359" stop-color="#00E0FF"/>
+<stop offset="1" stop-color="#5CF5FF"/>
+</linearGradient>
+<linearGradient id="paint3_linear" x1="0" y1="0" x2="1" y2="0" gradientUnits="userSpaceOnUse" gradientTransform="matrix(380.992 96.728 -346.761 1346 173.218 -668.074)">
+<stop offset="0" stop-color="#00CCE8"/>
+<stop offset="0.0804135" stop-color="#00E0FF"/>
+<stop offset="0.635359" stop-color="#00E0FF"/>
+<stop offset="1" stop-color="#5CF5FF"/>
+</linearGradient>
+<linearGradient id="paint5_linear" x1="0" y1="0" x2="1" y2="0" gradientUnits="userSpaceOnUse" gradientTransform="matrix(380.992 96.728 -346.761 1346 173.218 -668.074)">
+<stop offset="0" stop-color="#00CCE8"/>
+<stop offset="0.0804135" stop-color="#00E0FF"/>
+<stop offset="0.635359" stop-color="#00E0FF"/>
+<stop offset="1" stop-color="#5CF5FF"/>
+</linearGradient>
+<linearGradient id="paint7_linear" x1="0" y1="0" x2="1" y2="0" gradientUnits="userSpaceOnUse" gradientTransform="matrix(380.992 96.728 -346.761 1346 173.218 -668.074)">
+<stop offset="0" stop-color="#00CCE8"/>
+<stop offset="0.0804135" stop-color="#00E0FF"/>
+<stop offset="0.635359" stop-color="#00E0FF"/>
+<stop offset="1" stop-color="#5CF5FF"/>
+</linearGradient>
+<path id="path0_fill" d="M 33.7338 9.84941L 59.7782 78.549L 85.7606 9.84941L 106.038 9.84941L 106.038 99.479L 90.4113 99.479L 90.4113 69.9308L 91.9616 30.41L 65.2971 99.479L 54.0732 99.479L 27.4707 30.4716L 29.021 69.9308L 29.021 99.479L 12.9752 106L 13.2319 21.2272L 6.40645 21.2272L 0 9.84941L 33.7338 9.84941Z"/>
+<path id="path1_fill" d="M 188.016 22.4074L 159.863 22.4074L 159.863 99.479L 144.352 106L 144.298 22.4074L 116.394 22.4074L 116.394 9.84941L 188.016 9.84941L 188.016 22.4074Z"/>
+<path id="path2_fill" d="M 272.786 77.3178L 286.676 9.84941L 302.241 9.84941L 281.405 99.479L 266.399 99.479L 249.222 34.042L 231.673 99.479L 216.604 99.479L 195.769 9.84941L 211.334 9.84941L 225.348 77.1947L 242.587 9.84941L 268.997 9.84941L 262.591 19.0535L 258.212 19.0535L 272.786 77.3178Z"/>
+<path id="path3_fill" d="M 312.657 99.479L 312.952 6.01153L 328.279 0L 328.279 9.84941L 339.321 9.84941C 347.3 9.84941 354.369 11.6141 360.529 15.1435C 366.73 18.6728 371.525 23.6796 374.915 30.1638C 378.305 36.648 380 44.0761 380 52.4481L 380 56.9419C 380 65.437 378.284 72.9061 374.853 79.3493C 371.463 85.7924 366.606 90.7582 360.281 94.2465C 353.997 97.7348 346.783 99.479 338.639 99.479L 312.657 99.479ZM 328.345 22.4074L 328.345 87.0441L 338.577 87.0441C 346.804 87.0441 353.108 84.4997 357.49 79.4108C 361.914 74.2809 364.167 66.9349 364.249 57.3728L 364.249 52.3865C 364.249 42.6602 362.12 35.2322 357.862 30.1023C 353.604 24.9724 347.424 22.4074 339.321 22.4074L 328.345 22.4074Z"/>
+</defs>
+</svg>
