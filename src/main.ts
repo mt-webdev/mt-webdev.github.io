@@ -1,6 +1,8 @@
 import { htmlTemplates } from './html-template.const';
 import { textToHtml } from './utils/index';
 
+import './styles/shell.scss';
+
 class Main {
     get rootSelector() { return 'APP-ROOT'; };
     rootElement: Element | Node;
@@ -10,17 +12,13 @@ class Main {
     htmlTemplate: Node = null;
 
     constructor() {
-        for (const childs of document.body.childNodes.entries()) {
-            if (childs[1].nodeName === 'APP-ROOT') {
-                this.rootElement = childs[1];
-            }
-        }
+        this.rootElement = document.getElementsByTagName(this.rootSelector)[0];
     }
 
     async init() {
         const response: Response = await this.fetchHtmlTemplate();
         this.htmlTemplate = textToHtml(await response.text());
-        document.body.appendChild(this.htmlTemplate);
+        this.rootElement.appendChild(this.htmlTemplate);
     }
 
     _parseToHtml() {

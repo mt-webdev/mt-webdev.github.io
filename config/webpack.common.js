@@ -10,10 +10,11 @@ const { resolve, outDir } = require('./helpers');
 
 
 module.exports = {
-    cache: true,
     entry: {
         main: './src/main.ts'
     },
+    devtool: 'inline-source-map',
+    cache: true,
     output: {
         path: resolve(outDir),
         filename: '[name].bundle.js',
@@ -97,6 +98,7 @@ module.exports = {
         new CheckerPlugin() // needed for awesome-typescript-loader
     ],
     devServer: {
+        contentBase: './dist',
         port: 1234,
         host: '0.0.0.0',
         historyApiFallback: true,
