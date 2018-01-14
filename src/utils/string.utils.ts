@@ -1,5 +1,6 @@
 
 export function textToHtml(text: string): Node {
     const parser = new DOMParser();
-    return parser.parseFromString(text, 'text/xml').firstChild;
+    const htmlDoc =  parser.parseFromString(text, 'text/html');
+    return htmlDoc.body.childNodes[0];
 }
