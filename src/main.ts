@@ -1,7 +1,7 @@
 import { htmlTemplates } from './html-template.const';
 import { textToHtml } from './utils/index';
 
-import './styles/shell.scss';
+import './styles/main.scss';
 
 class Main {
     get rootSelector() { return 'APP-ROOT'; };

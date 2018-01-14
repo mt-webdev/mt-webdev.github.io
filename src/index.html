@@ -8,7 +8,6 @@
     <title>CV - mtwd</title>
 
     <link rel="manifest" href="manifest.json" />
-    <link rel="stylesheet" href="shell.css">
 
     <script>
         if (navigator.serviceWorker) {
@@ -19,24 +18,69 @@
 
 <body>
     <div class="page-grid">
-        <div class="haeder">
-            <div class="logo">
-                <img src="images/MTWD_384x384.svg" alt="Logo - MTWD">
+        <div class="content--section">
+
+            <div class="header">
+                <div class="picture">
+                    <img src="images/picture.jpg" alt="Picture of me">
+                </div>
+
+                <div class="logo">
+                    <img src="images/MTWD_384x384.svg" alt="Logo - MTWD">
+                </div>
+
+                <div class="header-data">
+                    <div>
+                        <label for="">Vorname:</label>
+                        <span>Marco</span>
+                    </div>
+
+                    <div>
+                        <label for="">Wohnort:</label>
+                        <span>München</span>
+                    </div>
+
+                    <div>
+                        <label for="">Nachname:</label>
+                        <span>Traspel</span>
+                    </div>
+
+                    <div>
+                        <label for="">Alter:</label>
+                        <span>25</span>
+                    </div>
+
+                    <div>
+                        <label for="">Email:</label>
+                        <span>mt-webdev@outlook.com</span>
+                    </div>
+
+                    <div>
+                        <label for="">Telefon:</label>
+                        <span>auf Anfrage</span>
+                    </div>
+
+                    <div>
+                        <label for="">Nationalität:</label>
+                        <span>DE</span>
+                    </div>
+
+                    <div>
+                            <label for="">Anschrift:</label>
+                            <span>auf Anfrage</span>
+                        </div>
+                </div>
             </div>
-            <div class="title">
-                <h1>Hello World!</h1>
-                <h2>This is me!</h2>
+
+            <div class="content">
+                <app-root></app-root>
             </div>
-        </div>
 
-        <div class="content">
-            <app-root></app-root>
-        </div>
+            <div class="footer">
+                &copy; Marco Traspel - 2018
+            </div>
 
-        <div class="footer">
-            &copy; Marco Traspel - 2018
         </div>
-
     </div>
 </body>
 
