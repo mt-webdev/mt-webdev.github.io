@@ -11,7 +11,8 @@ const { resolve, outDir } = require('./helpers');
 
 module.exports = {
     entry: {
-        main: './src/main.ts'
+        main: './src/main.ts',
+        vendor: './src/vendor.ts'
     },
     devtool: 'inline-source-map',
     cache: true,
@@ -39,6 +40,14 @@ module.exports = {
                 loader: ExtractTextPlugin.extract({
                     fallback: 'style-loader',
                     use: 'css-loader!sass-loader'
+                })
+            },
+            {
+                test: /\.css$/,
+                exclude: /(node_modules)/,
+                loader: ExtractTextPlugin.extract({
+                    fallback: 'style-loader',
+                    use: 'css-loader'
                 })
             },
             {

@@ -1,7 +1,6 @@
 import { htmlTemplates } from './html-template.const';
 import { textToHtml } from './utils/index';
-
-import './styles/main.scss';
+import './styles';
 
 class Main {
     get rootSelector() { return 'APP-ROOT'; };
@@ -16,9 +15,29 @@ class Main {
     }
 
     async init() {
+        if (!this.rootElement) {
+            return;
+        }
+
         const response: Response = await this.fetchHtmlTemplate();
         this.htmlTemplate = textToHtml(await response.text());
+        setTimeout(() => {
+            this._setContentAfterLoad();
+        });
+    }
+
+    _setContentAfterLoad() {
+        this._removeLogo();
         this.rootElement.appendChild(this.htmlTemplate);
+        this._enableScroll();
+    }
+
+    _enableScroll() {
+        document.body.classList.add('scrollable');
+    }
+
+    _removeLogo() {
+        document.body.removeChild(document.getElementById('shell'));
     }
 
     _parseToHtml() {
@@ -32,4 +51,3 @@ class Main {
 
 const main = new Main();
 main.init();
-window['main'] = main;
