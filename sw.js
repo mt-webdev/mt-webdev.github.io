@@ -4,7 +4,8 @@ const CACHED_FILES = [
     '/',
     'app/home.html',
     'app/notFound.html',
-    'main.bundle.js'
+    'main.bundle.js',
+    'main.css'
 ];
 
 
