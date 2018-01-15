@@ -2,7 +2,7 @@
 My CV
 
 
-This is a TypeScript based custom CV website using webpack.
+This is a TypeScript based custom CV website using webpack for bundling.
 
 Specials:
  - app shell (start page)
