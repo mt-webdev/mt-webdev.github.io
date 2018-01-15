@@ -60,7 +60,15 @@ app-root {
 
 }
 
-
+.page-break {
+    display: none;
+}
+@media print {
+    .page-break {
+        display: block;
+        page-break-after: always;
+    }
+}
 
 
 a, a:active, a:visited, a:hover {
@@ -72,13 +80,15 @@ a, a:active, a:visited, a:hover {
     display: grid;
     grid-template-columns: 15% 1fr 15%;
     grid-template-areas: "s11 container s12";
+    margin-top: -15px;
 
     .content--section {
         grid-area: container;
 
         display: grid;
         grid-template-columns: 1fr;
-        grid-template-rows: 20px 380px auto auto 20px;
+        grid-template-rows: 0 220px auto auto 20px;
+        grid-row-gap: 15px;
         grid-template-areas:
                         "s21"
                         "header"
@@ -105,14 +115,14 @@ a, a:active, a:visited, a:hover {
                 justify-content: center;
 
                 img {
-                    width: 300px;
+                    width: 200px;
                     border-radius: 50%;
                     border: 4px solid $themeColor;
                 }
             }
 
             .name {
-                font-size: 33px;
+                font-size: 24px;
                 justify-self: flex-start;
                 font-family: $mainFont;
 
@@ -152,7 +162,7 @@ a, a:active, a:visited, a:hover {
 
             display: grid;
             grid-auto-rows: auto;
-            grid-row-gap: 50px;
+            grid-row-gap: 20px;
 
             .person-data--wrapper .person-data {
                 font-size: 20px;
@@ -176,10 +186,22 @@ a, a:active, a:visited, a:hover {
                 }
             }
 
-            .links--wrapper .links a {
-                display: block;
-                font-size: 18px;
-                font-weight: bold;
+            .links--wrapper .links {
+                display: grid;
+                grid-auto-rows: 1fr;
+                grid-template-columns: 120px;
+                grid-row-gap: 10px;
+
+                a {
+                    font-size: 18px;
+                    font-weight: bold;
+                    text-decoration: none;
+
+                    i {
+                        font-size: 24px;
+                    }
+                }
+
             }
 
         }

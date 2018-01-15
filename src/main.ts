@@ -23,17 +23,12 @@ class Main {
         this.htmlTemplate = textToHtml(await response.text());
         setTimeout(() => {
             this._setContentAfterLoad();
-        });
+        }, 2000);
     }
 
     _setContentAfterLoad() {
         this._removeLogo();
         this.rootElement.appendChild(this.htmlTemplate);
-        this._enableScroll();
-    }
-
-    _enableScroll() {
-        document.body.classList.add('scrollable');
     }
 
     _removeLogo() {
