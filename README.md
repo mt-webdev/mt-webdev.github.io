@@ -11,6 +11,7 @@ Specials:
    - enabled for "add to homescreen" (at least it should be)
  - async content fetching 
  - offline first
+ - should look good on printers/pdf's (css-grid got some issues with page-breaks)
  
  # Source
  Source is inside the dev branch.
