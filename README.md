@@ -9,9 +9,10 @@ Specials:
  - service worker
  - web app manifest
    - enabled for "add to homescreen" (at least it should be)
- - async content fetching 
+ - async content fetching (SPA like)
  - offline first
  - should look good on printers/pdf's (css-grid got some issues with page-breaks)
+ - no frameworks in use
  
  # Source
  Source is inside the dev branch.
