@@ -18,6 +18,8 @@ app-root {
 
 }
 
+
+
 @mixin custom-fieldset {
     border: none;
     border-top: solid $commonGray 2px;
@@ -60,21 +62,50 @@ app-root {
 
 }
 
-.page-break {
-    display: none;
-}
-@media print {
-    .page-break {
-        display: block;
-        page-break-after: always;
-    }
-}
-
-
 a, a:active, a:visited, a:hover {
     color: $themeColor;
     text-decoration: underline;
 }
+
+.page-break {
+    display: none;
+}
+.page-break-cheat {
+    display: none;
+}
+
+.screen-only {
+    display: block !important;
+}
+
+.print-only {
+    display: none !important;
+}
+
+@media print {
+
+    .screen-only {
+        display: none !important;
+    }
+
+    .print-only {
+        display: block !important;
+    }
+
+    a[target="_blank"] .print-only {
+        display: inline-block !important;
+    }
+
+    .page-break {
+        display: block;
+        page-break-before: always !important;
+    }
+
+    .page-break-cheat {
+        display: block;
+    }
+}
+
 
 .page-grid {
     display: grid;
@@ -87,14 +118,12 @@ a, a:active, a:visited, a:hover {
 
         display: grid;
         grid-template-columns: 1fr;
-        grid-template-rows: 0 220px auto auto 20px;
+        grid-template-rows: 0 220px auto;
         grid-row-gap: 15px;
         grid-template-areas:
                         "s21"
                         "header"
-                        "content"
-                        "footer"
-                        "s22";
+                        "content";
 
         .header {
             grid-area: header;
@@ -165,12 +194,12 @@ a, a:active, a:visited, a:hover {
             grid-row-gap: 20px;
 
             .person-data--wrapper .person-data {
-                font-size: 20px;
+                font-size: 17xpx;
 
                 display: grid;
 
                 align-content: center;
-                grid-template-columns: 1fr 1fr;
+                grid-template-columns: auto auto;
                 grid-auto-rows: auto;
 
                 grid-row-gap: 5px;
@@ -178,7 +207,7 @@ a, a:active, a:visited, a:hover {
 
                 div {
                     display: grid;
-                    grid-template-columns: 150px auto;
+                    grid-template-columns: 100px auto;
 
                     label {
                         font-weight: bold;
@@ -190,7 +219,11 @@ a, a:active, a:visited, a:hover {
                 display: grid;
                 grid-auto-rows: 1fr;
                 grid-template-columns: 120px;
-                grid-row-gap: 10px;
+                    grid-row-gap: 10px;
+
+                @media print {
+                    grid-template-columns: auto;
+                }
 
                 a {
                     font-size: 18px;
