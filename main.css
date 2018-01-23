@@ -80,7 +80,7 @@ a, a:active, a:visited, a:hover {
         border-top: solid #555 2px; }
         .page-grid .content--section .content fieldset[class$="--wrapper"] legend {
           font-family: Calibri, Tahoma, Verdana, sans-serif;
-          padding: 0 10px;
+          padding: 0 8px;
           font-size: 36px; }
           .page-grid .content--section .content fieldset[class$="--wrapper"] legend i {
             display: inline-flex;
