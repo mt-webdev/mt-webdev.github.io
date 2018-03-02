@@ -99,6 +99,10 @@ module.exports = {
                 to: resolve(`${outDir}/manifest.json`)
             },
             {
+                from: './src/images/favicon.ico',
+                to: resolve(`${outDir}/favicon.ico`)
+            },
+            {
                 from: './src/images**/*',
                 to: resolve(outDir + '/images'),
                 flatten: true
