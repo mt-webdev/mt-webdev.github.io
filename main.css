@@ -138,6 +138,40 @@ a, a:active, a:visited, a:hover {
           text-decoration: none; }
           .page-grid .content--section .content .links--wrapper .links a i {
             font-size: 24px; }
+      .page-grid .content--section .content .skills--wrapper .skills {
+        display: grid;
+        grid-template-columns: auto auto;
+        grid-template-rows: auto;
+        grid-row-gap: 20px;
+        grid-template-areas: "lefts rights";
+        justify-content: space-evenly; }
+        .page-grid .content--section .content .skills--wrapper .skills [class$="--skills"] h3 {
+          margin: 0 0 10px 0; }
+        .page-grid .content--section .content .skills--wrapper .skills [class$="--skills"] ul {
+          padding: 0;
+          margin: 0;
+          list-style: none; }
+          .page-grid .content--section .content .skills--wrapper .skills [class$="--skills"] ul li {
+            display: grid;
+            grid-template-columns: auto auto;
+            grid-template-rows: auto;
+            grid-column-gap: 15px;
+            justify-content: space-between; }
+            .page-grid .content--section .content .skills--wrapper .skills [class$="--skills"] ul li span[class*='1']:before {
+              content: '\F005'; }
+            .page-grid .content--section .content .skills--wrapper .skills [class$="--skills"] ul li span[class*='2']:before {
+              content: '\F005\F005'; }
+            .page-grid .content--section .content .skills--wrapper .skills [class$="--skills"] ul li span[class*='3']:before {
+              content: '\F005\F005\F005'; }
+            .page-grid .content--section .content .skills--wrapper .skills [class$="--skills"] ul li span[class*='4']:before {
+              content: '\F005\F005\F005\F005'; }
+            .page-grid .content--section .content .skills--wrapper .skills [class$="--skills"] ul li span[class*='5']:before {
+              content: '\F005\F005\F005\F005\F005'; }
+            .page-grid .content--section .content .skills--wrapper .skills [class$="--skills"] ul li span:first-child {
+              font-size: 12px;
+              color: #0fa0d2; }
+            .page-grid .content--section .content .skills--wrapper .skills [class$="--skills"] ul li span[class$="+"] {
+              color: #a0d20f; }
     .page-grid .content--section .footer {
       margin-top: 20px;
       grid-area: footer;
