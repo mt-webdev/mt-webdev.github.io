@@ -1,87 +1,11 @@
-$backColor: #f7f7f7;
-$themeColor: rgb(15, 160, 210);
-$starColor: $themeColor;
-$superStarColor: rgb(160, 210, 15);
-
-$icoForeground: #fff;
-$icoBackground: $themeColor;
-
-$commonGray: #555;
-
-$mainFont: Calibri, Tahoma, Verdana, sans-serif;
-
-$textFontSize: 15px;
+@import "variables";
+@import "mixins";
 
 app-root {
     position: relative;
     display: grid;
     height: 100%;
     width: 100%;
-
-}
-
-@mixin levels {
-    @for $i from 1 through 5 {
-        span#{"[class*='" + $i + "']"}:before {
-            @if $i == 1 {
-                content: '\F005';
-            }
-            @if $i == 2 {
-                content: '\F005\F005';
-            }
-            @if $i == 3 {
-                content: '\F005\F005\F005';
-            }
-            @if $i == 4 {
-                content: '\F005\F005\F005\F005';
-            }
-            @if $i == 5 {
-                content: '\F005\F005\F005\F005\F005';
-            }
-        }
-    }
-}
-
-
-@mixin custom-fieldset {
-    border: none;
-    border-top: solid $commonGray 2px;
-
-    legend {
-        font-family: $mainFont;
-        padding: 0 8px;
-
-        font-size: 36px;
-
-        i {
-            display: inline-flex;
-            justify-content: center;
-            align-items: center;
-
-            color: $icoForeground;
-            background-color: $icoBackground;
-            border-radius: 50%;
-            height: 60px;
-            width: 60px;
-        }
-    }
-}
-
-@mixin ul-styling {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: grid;
-    grid-template-columns: 150px 1fr auto;
-    grid-template-areas: "left-li middle-li right-li";
-
-    li:nth-of-type(2) {
-        font-weight: bold;
-    }
-
-    li {
-        padding: 2px 10px;
-    }
 
 }
 

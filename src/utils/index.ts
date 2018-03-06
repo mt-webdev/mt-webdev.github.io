@@ -1,3 +1,3 @@
 
 export * from './string.utils';
-export * from './toast';
+export * from './toast/toast';

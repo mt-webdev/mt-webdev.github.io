@@ -20,8 +20,13 @@ class Main {
     async updateSW() {
         try {
             const registration = await navigator.serviceWorker.getRegistration('sw.js');
+            console.log(await registration);
             if (await registration.waiting && await registration.waiting.state === 'installed') {
-                updateServiceWorkerToast();
+                const clickedYes = updateServiceWorkerToast();
+                if (await clickedYes) {
+                    await registration.update().then(() => window.location.reload())
+                        .catch(err => console.log('err', err));
+                }
             }
         } catch (error) {
             alert(error);
