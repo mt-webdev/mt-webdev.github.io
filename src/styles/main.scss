@@ -1,5 +1,7 @@
 $backColor: #f7f7f7;
 $themeColor: rgb(15, 160, 210);
+$starColor: $themeColor;
+$superStarColor: rgb(160, 210, 15);
 
 $icoForeground: #fff;
 $icoBackground: $themeColor;
@@ -18,6 +20,27 @@ app-root {
 
 }
 
+@mixin levels {
+    @for $i from 1 through 5 {
+        span#{"[class*='" + $i + "']"}:before {
+            @if $i == 1 {
+                content: '\F005';
+            }
+            @if $i == 2 {
+                content: '\F005\F005';
+            }
+            @if $i == 3 {
+                content: '\F005\F005\F005';
+            }
+            @if $i == 4 {
+                content: '\F005\F005\F005\F005';
+            }
+            @if $i == 5 {
+                content: '\F005\F005\F005\F005\F005';
+            }
+        }
+    }
+}
 
 
 @mixin custom-fieldset {
@@ -235,6 +258,47 @@ a, a:active, a:visited, a:hover {
                     }
                 }
 
+            }
+
+            .skills--wrapper .skills {
+                display: grid;
+                grid-template-columns: auto auto;
+                grid-template-rows: auto;
+                grid-row-gap: 20px;
+
+                grid-template-areas: "lefts rights";
+                justify-content: space-evenly;
+
+
+                [class$="--skills"] {
+                    h3 {
+                        margin: 0 0 10px 0;
+                    }
+
+                    ul {
+                        padding: 0;
+                        margin: 0;
+                        list-style: none;
+
+
+                        li {
+                            display: grid;
+                            grid-template-columns: auto auto;
+                            grid-template-rows: auto;
+                            grid-column-gap: 15px;
+                            justify-content: space-between;
+
+                            @include levels;
+                            span:first-child {
+                                font-size: 12px;
+                                color: $starColor;
+                            }
+                            span[class$="+"] {
+                                color: $superStarColor;
+                            }
+                        }
+                    }
+                }
             }
 
         }
