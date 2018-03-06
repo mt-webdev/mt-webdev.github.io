@@ -1,6 +1,7 @@
 import { htmlTemplates } from './html-template.const';
 import { textToHtml } from './utils/index';
 import './styles';
+import { updateServiceWorkerToast } from './utils';
 
 class Main {
     get rootSelector() { return 'APP-ROOT'; };
@@ -12,6 +13,19 @@ class Main {
 
     constructor() {
         this.rootElement = document.getElementsByTagName(this.rootSelector)[0];
+
+        this.updateSW();
+    }
+
+    async updateSW() {
+        try {
+            const registration = await navigator.serviceWorker.getRegistration('sw.js');
+            if (await registration.waiting && await registration.waiting.state === 'installed') {
+                updateServiceWorkerToast();
+            }
+        } catch (error) {
+            alert(error);
+        }
     }
 
     async init() {
