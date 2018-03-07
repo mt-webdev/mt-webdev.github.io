@@ -1,7 +1,7 @@
 import { htmlTemplates } from './html-template.const';
 import { textToHtml } from './utils/index';
 import './styles';
-import { updateServiceWorkerToast } from './utils';
+import { updateServiceWorkerToast } from './utils/index';
 
 class Main {
     get rootSelector() { return 'APP-ROOT'; };
@@ -19,8 +19,7 @@ class Main {
 
     async updateSW() {
         try {
-            const registration = await navigator.serviceWorker.getRegistration('sw.js');
-            console.log(await registration);
+            const registration = await navigator.serviceWorker.getRegistration();
             if (await registration.waiting && await registration.waiting.state === 'installed') {
                 const clickedYes = updateServiceWorkerToast();
                 if (await clickedYes) {
