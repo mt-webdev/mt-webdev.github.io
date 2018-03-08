@@ -1,7 +1,6 @@
-import { htmlTemplates } from './html-template.const';
-import { textToHtml } from './utils/index';
+import { htmlTemplates, skipWaiting } from './utils/constants/index';
+import { textToHtml, updateServiceWorkerToast } from './utils/index';
 import './styles';
-import { updateServiceWorkerToast } from './utils';
 
 class Main {
     get rootSelector() { return 'APP-ROOT'; };
@@ -19,14 +18,25 @@ class Main {
 
     async updateSW() {
         try {
-            const registration = await navigator.serviceWorker.getRegistration();
-            if (await registration.waiting && await registration.waiting.state === 'installed') {
-                const clickedYes = updateServiceWorkerToast();
-                if (await clickedYes) {
-                    await registration.update().then(() => window.location.reload())
-                        .catch(err => console.log('err', err));
-                }
-            }
+            var refreshing;
+            navigator.serviceWorker.addEventListener('controllerchange', function () {
+                if (refreshing) return;
+                window.location.reload();
+                refreshing = true;
+            });
+
+            navigator.serviceWorker.addEventListener('message', msg => console.log('msg', msg));
+
+            navigator.serviceWorker.getRegistration()
+                .then(registration => {
+                    if (registration.waiting && registration.waiting.state === 'installed') {
+                        updateServiceWorkerToast().then(clicked => {
+                            if (clicked) {
+                                registration.waiting.postMessage({ action: skipWaiting });
+                            }
+                        });
+                    }
+                });
         } catch (error) {
             alert(error);
         }
@@ -61,6 +71,10 @@ class Main {
         return window['fetch'].call(window, this.entryPoint);
     }
 }
+
+window['displayUpdateServiceWorkerToast'] = (worker) => {
+    console.log('worker', worker);
+};
 
 const main = new Main();
 main.init();

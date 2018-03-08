@@ -1,4 +1,4 @@
-const appCache = 'mtwd-cv-0.0.26';
+const appCache = 'mtwd-cv-0.0.13';
 
 const CACHED_FILES = [
     '/',
@@ -34,4 +34,11 @@ self.addEventListener('activate', event => {
                 .filter(cacheName => cacheName.startsWith('mtwd-cv-') && cacheName !== appCache)
                 .map(cacheName => caches.delete(cacheName))
         )));
+});
+
+self.addEventListener('message', message => {
+    console.log('sw msg', message);
+    if (message.data.action === 'skipWaiting') {
+        self.skipWaiting();
+    }
 });

@@ -13,7 +13,17 @@
 
     <script>
         if (navigator.serviceWorker) {
-            navigator.serviceWorker.register('sw.js');
+            navigator.serviceWorker.register('sw.js').then(registration => {
+
+                registration.addEventListener('updatefound', (evt) => window['displayUpdateServiceWorkerToast'].apply(registration.waiting));
+
+                console.log('reg', registration, !!registration.waiting);
+
+                if (registration.waiting) {
+                    console.log('waiting', registration.waiting);
+                    // window['displayUpdateServiceWorkerToast'].apply(registration.waiting);
+                }
+            });
         }
     </script>
 

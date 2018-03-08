@@ -9,7 +9,11 @@ export function updateServiceWorkerToast(): Promise<any> {
 
         toast.appendChild(getTextElement());
 
-        let clickCallback = () => res(true);
+        let clickCallback = () => {
+            toast.remove();
+            res(true);
+        };
+
         const buttonEl = getButtonElement(clickCallback);
         toast.appendChild(buttonEl);
 
