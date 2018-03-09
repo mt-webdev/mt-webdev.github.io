@@ -1,5 +1,11 @@
 @import "variables";
 
+@mixin media-print {
+    @media print {
+        @content;
+    }
+}
+
 @mixin levels {
     @for $i from 1 through 3 {
         span#{"[class*='" + $i + "']"}:before {

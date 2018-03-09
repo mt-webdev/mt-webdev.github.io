@@ -58,7 +58,11 @@ a, a:active, a:visited, a:hover {
     display: grid;
     grid-template-columns: 15% 1fr 15%;
     grid-template-areas: "s11 container s12";
-    margin-top: -15px;
+
+    margin: -15px 0 50px 0;
+    @include media-print {
+        margin: -15px 0 0 0;
+    }
 
     .content--section {
         grid-area: container;
@@ -186,7 +190,7 @@ a, a:active, a:visited, a:hover {
 
             .skills--wrapper .skills {
                 display: grid;
-                grid-template-columns: 15% 15%;
+                grid-template-columns: 250px 250px;
                 grid-template-rows: auto;
                 grid-row-gap: 20px;
 
@@ -194,13 +198,20 @@ a, a:active, a:visited, a:hover {
 
                 justify-content: space-evenly;
 
+                @include media-print {
+                    grid-column-gap: 30px;
+                }
+
                 header.legend {
                     grid-area: legend;
+                    ju
 
                     ul {
                         display: grid;
                         grid-auto-flow: column;
                         grid-column-gap: 20px;
+                        justify-content: space-between;
+                        padding: 0;
 
                         list-style: none;
 
@@ -220,6 +231,10 @@ a, a:active, a:visited, a:hover {
                     }
 
                     ul {
+                        display: grid;
+                        grid-auto-flow: row;
+                        grid-row-gap: 5px;
+
                         padding: 0;
                         margin: 0;
                         list-style: none;
