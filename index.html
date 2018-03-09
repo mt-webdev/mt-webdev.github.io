@@ -13,7 +13,16 @@
 
     <script>
         if (navigator.serviceWorker) {
-            navigator.serviceWorker.register('sw.js');
+            navigator.serviceWorker.register('sw.js').then(function (registration) {
+                registration.addEventListener('updatefound', function (evt) { window['displayUpdateServiceWorkerToast'].apply(registration.waiting); });
+
+                console.log('reg', registration, !!registration.waiting);
+
+                if (registration.waiting) {
+                    console.log('waiting', registration.waiting);
+                    // window['displayUpdateServiceWorkerToast'].apply(registration.waiting);
+                }
+            });
         }
     </script>
 
@@ -99,6 +108,6 @@
         <div class="loading"></div>
     </div>
     <app-root></app-root>
-<script type="text/javascript" src="main.bundle.js"></script><script type="text/javascript" src="vendor.bundle.js"></script></body>
+<script type="text/javascript" src="polyfills.bundle.js"></script><script type="text/javascript" src="main.bundle.js"></script><script type="text/javascript" src="vendor.bundle.js"></script></body>
 
 </html>
