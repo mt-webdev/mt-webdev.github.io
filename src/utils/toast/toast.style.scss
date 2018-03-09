@@ -1,5 +1,11 @@
 @import "./../../styles/variables.scss";
 
+$themeColor-saturation: saturation($themeColor);
+$themeColor-lightness: lightness($themeColor);
+
+$yesColor: hsl(130, $themeColor-saturation, $themeColor-lightness);
+$noColor: hsl(10, $themeColor-saturation, $themeColor-lightness);
+
 .toast-message {
     position: fixed;
     bottom: 100px;
@@ -11,10 +17,37 @@
     color: $icoForeground;
 
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: auto auto auto;
+    align-items: center;
+    padding-left: 10px;
 
-    h2 {
-        margin: 0;
-        padding: 0;
+    span {
+        margin-right: 15px;
+        font-weight: bold;
+    }
+
+    div {
+        align-self: stretch;
+        width: 50px;
+        line-height: 50px;
+        text-align: center;
+
+        &:hover {
+            cursor: pointer;
+        }
+
+        &:last-of-type {
+            background-color: $noColor;
+            &:hover {
+                background-color: $noColor;
+            }
+        }
+
+        &:first-of-type {
+            background-color: lighten($yesColor, 10%);
+            &:hover {
+                background-color: darken($yesColor, 10%);
+            }
+        }
     }
 }

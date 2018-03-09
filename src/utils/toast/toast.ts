@@ -1,5 +1,8 @@
 import './toast.style.scss';
 
+const YES_FA_ICON = 'check';
+const NO_FA_ICON = 'times';
+
 export function updateServiceWorkerToast(): Promise<any> {
     return new Promise((res, rej) => {
         const toast = document.createElement('div');
@@ -9,28 +12,44 @@ export function updateServiceWorkerToast(): Promise<any> {
 
         toast.appendChild(getTextElement());
 
-        let clickCallback = () => {
+        let yesCallback = () => {
             toast.remove();
             res(true);
         };
 
-        const buttonEl = getButtonElement(clickCallback);
-        toast.appendChild(buttonEl);
+        let noCallback = () => {
+            toast.remove();
+            res(false);
+        };
+
+        const yesButton = getYesButton(yesCallback);
+        toast.appendChild(yesButton);
+
+        const noButton = getNoButton(noCallback);
+        toast.appendChild(noButton);
 
         document.getElementsByTagName('app-root')[0].appendChild(toast);
     });
 }
 
 function getTextElement() {
-    const textEl = document.createElement('h2');
+    const textEl = document.createElement('span');
     textEl.innerText = 'Es gibt Neuerungen, bitte neu laden!';
 
     return textEl;
 }
 
-function getButtonElement(clickCallback) {
-    const buttonEl = document.createElement('button');
-    buttonEl.innerHTML = 'JA';
+function getYesButton(clickCallback) {
+    return createButton(YES_FA_ICON, clickCallback);
+}
+
+function getNoButton(clickCallback) {
+    return createButton(NO_FA_ICON, clickCallback);
+}
+
+function createButton(faIcon, clickCallback) {
+    const buttonEl = document.createElement('div');
+    buttonEl.setAttribute('class', `fa fa-${faIcon}`);
     buttonEl.addEventListener('click', clickCallback);
 
     return buttonEl;
