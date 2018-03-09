@@ -6,6 +6,7 @@ const CACHED_FILES = [
     'app/notFound.html',
     'main.bundle.js',
     'vendor.bundle.js',
+    'polyfills.bundle.js',
     'main.css',
     'images/MTWD_384x384.svg',
     'images/picture.jpg',

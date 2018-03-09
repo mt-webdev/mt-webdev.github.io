@@ -12,7 +12,8 @@ const { resolve, outDir } = require('./helpers');
 module.exports = {
     entry: {
         main: './src/main.ts',
-        vendor: './src/vendor.ts'
+        vendor: './src/vendor.ts',
+        polyfills: './src/polyfills.ts'
     },
     devtool: 'inline-source-map',
     cache: true,

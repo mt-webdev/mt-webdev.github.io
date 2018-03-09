@@ -68,7 +68,7 @@ class Main {
     }
 
     async fetchHtmlTemplate(): Promise<any> {
-        return window['fetch'].call(window, this.entryPoint);
+        return window.fetch(this.entryPoint);
     }
 }
 
