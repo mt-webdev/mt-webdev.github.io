@@ -52,7 +52,10 @@ a, a:active, a:visited, a:hover {
   display: grid;
   grid-template-columns: 15% 1fr 15%;
   grid-template-areas: "s11 container s12";
-  margin-top: -15px; }
+  margin: -15px 0 50px 0; }
+  @media print {
+    .page-grid {
+      margin: -15px 0 0 0; } }
   .page-grid .content--section {
     grid-area: container;
     display: grid;
@@ -157,19 +160,26 @@ a, a:active, a:visited, a:hover {
             font-size: 24px; }
       .page-grid .content--section .content .skills--wrapper .skills {
         display: grid;
-        grid-template-columns: 15% 15%;
+        grid-template-columns: 250px 250px;
         grid-template-rows: auto;
         grid-row-gap: 20px;
         grid-template-areas: "legend legend";
         justify-content: space-evenly; }
+        @media print {
+          .page-grid .content--section .content .skills--wrapper .skills {
+            grid-column-gap: 30px; } }
         .page-grid .content--section .content .skills--wrapper .skills header.legend {
           grid-area: legend; }
-          .page-grid .content--section .content .skills--wrapper .skills header.legend ul {
+          .page-grid .content--section .content .skills--wrapper .skills header.legend ju
+ul {
             display: grid;
             grid-auto-flow: column;
             grid-column-gap: 20px;
+            justify-content: space-between;
+            padding: 0;
             list-style: none; }
-            .page-grid .content--section .content .skills--wrapper .skills header.legend ul li {
+            .page-grid .content--section .content .skills--wrapper .skills header.legend ju
+ul li {
               display: grid;
               grid-template-columns: auto auto;
               grid-template-rows: auto;
@@ -177,20 +187,28 @@ a, a:active, a:visited, a:hover {
               justify-content: flex-start;
               grid-column-gap: 5px;
               line-height: 12px; }
-              .page-grid .content--section .content .skills--wrapper .skills header.legend ul li span[class*='1']:before {
+              .page-grid .content--section .content .skills--wrapper .skills header.legend ju
+ul li span[class*='1']:before {
                 content: "\F005"; }
-              .page-grid .content--section .content .skills--wrapper .skills header.legend ul li span[class*='2']:before {
+              .page-grid .content--section .content .skills--wrapper .skills header.legend ju
+ul li span[class*='2']:before {
                 content: "\F005\F005"; }
-              .page-grid .content--section .content .skills--wrapper .skills header.legend ul li span[class*='3']:before {
+              .page-grid .content--section .content .skills--wrapper .skills header.legend ju
+ul li span[class*='3']:before {
                 content: "\F005\F005\F005"; }
-              .page-grid .content--section .content .skills--wrapper .skills header.legend ul li span:first-child {
+              .page-grid .content--section .content .skills--wrapper .skills header.legend ju
+ul li span:first-child {
                 font-size: 12px;
                 color: #0fa0d2; }
-              .page-grid .content--section .content .skills--wrapper .skills header.legend ul li span[class$="+"] {
+              .page-grid .content--section .content .skills--wrapper .skills header.legend ju
+ul li span[class$="+"] {
                 color: #a0d20f; }
         .page-grid .content--section .content .skills--wrapper .skills [class$="--skills"] h3 {
           margin: 0 0 10px 0; }
         .page-grid .content--section .content .skills--wrapper .skills [class$="--skills"] ul {
+          display: grid;
+          grid-auto-flow: row;
+          grid-row-gap: 5px;
           padding: 0;
           margin: 0;
           list-style: none; }
