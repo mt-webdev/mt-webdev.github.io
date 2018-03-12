@@ -60,8 +60,12 @@
     legend {
         font-family: $mainFont;
         padding: 0 8px;
+        font-size: 30px;
+        background-color: $backColor;
 
-        font-size: 36px;
+        @include md-media {
+            font-size: 36px;
+        }
 
         i {
             display: inline-flex;
@@ -71,8 +75,13 @@
             color: $icoForeground;
             background-color: $icoBackground;
             border-radius: 50%;
-            height: 60px;
-            width: 60px;
+            height: 50px;
+            width: 50px;
+
+            @include md-media {
+                height: 60px;
+                width: 60px;
+            }
         }
     }
 }
@@ -82,11 +91,27 @@
     padding: 0;
     margin: 0;
     display: grid;
-    grid-template-columns: 150px 1fr auto;
-    grid-template-areas: "left-li middle-li right-li";
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    grid-template-areas: "project-date project-role" "project-desc project-desc";
+    grid-row-gap: 10px;
+
+    @include md-media {
+        grid-template-columns: 150px 1fr auto;
+        grid-template-areas: "project-date project-desc project-role";
+    }
+
+    li:nth-of-type(1) {
+        grid-area: project-date;
+    }
 
     li:nth-of-type(2) {
+        grid-area: project-desc;
         font-weight: bold;
+    }
+
+    li:nth-of-type(3) {
+        grid-area: project-role;
     }
 
     li {
@@ -98,16 +123,29 @@
 
 @mixin li-skills {
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: 1fr 1fr;
     grid-template-rows: auto;
-    justify-content: space-between;
+    grid-column-gap: 10px;
+    align-items: center;
+
+    @include md-media {
+        justify-content: space-between;
+        grid-template-columns: auto auto;
+    }
 
     @include levels;
 
     span:first-child {
         font-size: 12px;
         color: $starColor;
+        justify-self: end;
     }
+
+    span:last-child {
+        justify-self: start;
+    }
+
+
     span[class$="+"] {
         color: $superStarColor;
     }
