@@ -13,8 +13,10 @@ $noColor: hsl(10, $themeColor-saturation, $themeColor-lightness);
     height: 50px;
     font-size: 24px;
     font-family: $mainFont;
-    background-color: $themeColor;
+    background-color: $commonGray;
     color: $icoForeground;
+    border-radius: 5px;
+    line-height: 50px;
 
     display: grid;
     grid-template-columns: auto auto auto;
@@ -38,6 +40,7 @@ $noColor: hsl(10, $themeColor-saturation, $themeColor-lightness);
 
         &:last-of-type {
             background-color: $noColor;
+            border-radius: 0 5px 5px 0;
             &:hover {
                 // background-color: $noColor;
                 background-color: lighten($noColor, 10%);
