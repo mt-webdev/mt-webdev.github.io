@@ -1,10 +1,12 @@
 const path = require('path');
 const webpack = require('webpack');
+const Autoprefixer = require('autoprefixer');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CheckerPlugin } = require('awesome-typescript-loader');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const UglifyWebpackPlugin = require('uglifyjs-webpack-plugin');
 
 const { resolve, outDir } = require('./helpers');
 
@@ -40,7 +42,7 @@ module.exports = {
                 exclude: /(node_modules)/,
                 loader: ExtractTextPlugin.extract({
                     fallback: 'style-loader',
-                    use: 'css-loader!sass-loader'
+                    use: 'css-loader?-minimize!sass-loader'
                 })
             },
             {
@@ -48,7 +50,12 @@ module.exports = {
                 exclude: /(node_modules)/,
                 loader: ExtractTextPlugin.extract({
                     fallback: 'style-loader',
-                    use: 'css-loader'
+                    use: [
+                        {
+                            loader: 'css-loader',
+                            options: { minimize: true }
+                        }
+                    ]
                 })
             },
             {
@@ -76,7 +83,14 @@ module.exports = {
         ]
     },
     plugins: [
+        new UglifyWebpackPlugin(),
         new ExtractTextPlugin('[name].css'),
+        new webpack.LoaderOptionsPlugin({
+            minimize: true,
+            options: {
+                postcss: [Autoprefixer]
+            }
+        }),
         new HtmlWebpackPlugin({
             template: 'src/index.html',
         }),
