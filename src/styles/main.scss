@@ -159,16 +159,20 @@ a, a:active, a:visited, a:hover {
             grid-row-gap: 20px;
 
             .person-data--wrapper .person-data {
-                font-size: 17xpx;
+                font-size: 17px;
 
                 display: grid;
 
                 align-content: center;
-                grid-template-columns: auto auto;
+                grid-template-columns: auto;
                 grid-auto-rows: auto;
 
                 grid-row-gap: 5px;
                 grid-column-gap: 40px;
+
+                @include md-media {
+                    grid-template-columns: auto auto;
+                }
 
                 div {
                     display: grid;
@@ -204,29 +208,39 @@ a, a:active, a:visited, a:hover {
 
             .skills--wrapper .skills {
                 display: grid;
-                grid-template-columns: 250px 250px;
+                grid-template-columns: 1fr;
                 grid-template-rows: auto;
                 grid-row-gap: 20px;
 
-                grid-template-areas: "legend legend";
-
                 justify-content: space-evenly;
+
+                @include md-media {
+                    grid-template-areas: "legend legend";
+                    grid-template-columns: 250px 250px;
+                }
 
                 @include media-print {
                     grid-column-gap: 30px;
                 }
 
                 header.legend {
-                    grid-area: legend;
+                    @include md-media {
+                        grid-area: legend;
+                    }
 
                     ul {
                         display: grid;
-                        grid-auto-flow: column;
-                        grid-column-gap: 20px;
+                        grid-auto-flow: row;
+                        grid-row-gap: 20px;
                         justify-content: space-between;
                         padding: 0;
 
                         list-style: none;
+
+                        @include md-media {
+                            grid-auto-flow: column;
+                            grid-column-gap: 20px;
+                    }
 
                         li {
                             @include li-skills;

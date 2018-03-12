@@ -1,31 +1,31 @@
 @import "variables";
 
 @mixin xs-media ($target: screen){
-    @media #{$target} and (max-width: 360px) {
+    @media #{$target} and (max-width: calc($xsSize - 1)) {
         @content;
     }
 }
 
 @mixin sm-media ($target: all){
-    @media #{$target} and (min-width: 361px){
+    @media #{$target} and (min-width: $xsSize){
         @content;
     }
 }
 
 @mixin md-media ($target: all){
-    @media #{$target} and (min-width: 768px) {
+    @media #{$target} and (min-width: $mdSize) {
         @content;
     }
 }
 
 @mixin lg-media ($target: all){
-    @media #{$target} and (min-width: 992px)  {
+    @media #{$target} and (min-width: $lgSize)  {
         @content;
     }
 }
 
-@mixin xlg-media($target: all) {
-    @media #{$target} and (min-width: 1200px) {
+@mixin xl-media($target: all) {
+    @media #{$target} and (min-width: $xlSize) {
         @content;
     }
 }
