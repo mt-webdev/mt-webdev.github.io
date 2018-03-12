@@ -26,7 +26,7 @@ class Main {
                 refreshing = true;
             });
         } catch (error) {
-            alert(error);
+            console.error(error);
         }
     }
 
