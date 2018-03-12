@@ -99,6 +99,7 @@
     @include md-media {
         grid-template-columns: 150px 1fr auto;
         grid-template-areas: "project-date project-desc project-role";
+        grid-template-rows: none;
     }
 
     li:nth-of-type(1) {

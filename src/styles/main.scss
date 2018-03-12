@@ -227,6 +227,7 @@ a, a:active, a:visited, a:hover {
                 @include md-media {
                     grid-template-areas: "legend legend";
                     grid-template-columns: 250px 250px;
+                    grid-row-gap: 20px;
                 }
 
                 @include media-print {
@@ -243,11 +244,16 @@ a, a:active, a:visited, a:hover {
                     align-items: center;
 
                     @include md-media {
-                        grid-template-columns: 1fr 1fr;
-                    }
+                        grid-template-rows: 1fr 1fr;
+                        grid-template-columns: none;
+                 }
 
                     h3  {
                         justify-self: end;
+
+                        @include md-media {
+                            justify-self: inherit;
+                        }
                     }
 
                     ul {
@@ -261,7 +267,8 @@ a, a:active, a:visited, a:hover {
                         @include md-media {
                             grid-auto-flow: column;
                             grid-column-gap: 20px;
-                    }
+                            justify-content: space-between;
+                        }
 
                         li {
                             @include li-skills;
@@ -281,7 +288,9 @@ a, a:active, a:visited, a:hover {
                     align-items: center;
 
                     @include md-media {
-                        grid-template-columns: 1fr 1fr;
+                        display: block;
+                        grid-template-columns:none;
+                        align-items: inherit;
                     }
 
                     h3 {
