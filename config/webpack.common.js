@@ -108,8 +108,8 @@ module.exports = {
                 to: resolve(`${outDir}/sw.js`)
             },
             {
-                from: './src/app**/*',
-                to: resolve(outDir + '/app'),
+                from: './src/templates**/*',
+                to: resolve(outDir + '/templates'),
                 flatten: true
             },
             {
