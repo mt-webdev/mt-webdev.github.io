@@ -83,7 +83,10 @@ module.exports = {
         ]
     },
     plugins: [
-        new UglifyWebpackPlugin(),
+        new UglifyWebpackPlugin({
+            parallel: true,
+            exclude: /(node_modules)|(\.awcache)|(config)/
+        }),
         new ExtractTextPlugin('[name].css'),
         new webpack.LoaderOptionsPlugin({
             minimize: true,

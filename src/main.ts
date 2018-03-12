@@ -76,5 +76,18 @@ window['displayUpdateServiceWorkerToast'] = (worker) => {
     console.log('worker', worker);
 };
 
+if (navigator.serviceWorker) {
+    navigator.serviceWorker.register('sw.js').then(function (registration) {
+        registration.addEventListener('updatefound', function (evt) { window['displayUpdateServiceWorkerToast'].apply(registration.waiting); });
+
+        console.log('reg', registration, !!registration.waiting);
+
+        if (registration.waiting) {
+            console.log('waiting', registration.waiting);
+            // window['displayUpdateServiceWorkerToast'].apply(registration.waiting);
+        }
+    });
+}
+
 const main = new Main();
 main.init();
