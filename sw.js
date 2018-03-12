@@ -1,4 +1,4 @@
-const appCache = 'mtwd-cv-0.0.11';
+const appCache = 'mtwd-cv-0.0.19';
 
 const CACHED_FILES = [
     '/',
@@ -38,7 +38,6 @@ self.addEventListener('activate', event => {
 });
 
 self.addEventListener('message', message => {
-    console.log('sw msg', message);
     if (message.data.action === 'skipWaiting') {
         self.skipWaiting();
     }
