@@ -1,10 +1,12 @@
 const path = require('path');
 const webpack = require('webpack');
+const Autoprefixer = require('autoprefixer');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CheckerPlugin } = require('awesome-typescript-loader');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const UglifyWebpackPlugin = require('uglifyjs-webpack-plugin');
 
 const { resolve, outDir } = require('./helpers');
 
@@ -12,7 +14,8 @@ const { resolve, outDir } = require('./helpers');
 module.exports = {
     entry: {
         main: './src/main.ts',
-        vendor: './src/vendor.ts'
+        vendor: './src/vendor.ts',
+        polyfills: './src/polyfills.ts'
     },
     devtool: 'inline-source-map',
     cache: true,
@@ -39,7 +42,7 @@ module.exports = {
                 exclude: /(node_modules)/,
                 loader: ExtractTextPlugin.extract({
                     fallback: 'style-loader',
-                    use: 'css-loader!sass-loader'
+                    use: 'css-loader?-minimize!sass-loader'
                 })
             },
             {
@@ -47,7 +50,12 @@ module.exports = {
                 exclude: /(node_modules)/,
                 loader: ExtractTextPlugin.extract({
                     fallback: 'style-loader',
-                    use: 'css-loader'
+                    use: [
+                        {
+                            loader: 'css-loader',
+                            options: { minimize: true }
+                        }
+                    ]
                 })
             },
             {
@@ -75,9 +83,19 @@ module.exports = {
         ]
     },
     plugins: [
+        new UglifyWebpackPlugin({
+            parallel: true,
+            exclude: /(node_modules)|(\.awcache)|(config)/
+        }),
         new ExtractTextPlugin('[name].css'),
+        new webpack.LoaderOptionsPlugin({
+            minimize: true,
+            options: {
+                postcss: [Autoprefixer]
+            }
+        }),
         new HtmlWebpackPlugin({
-            template: 'src/index.html',
+            template: 'src/index.html'
         }),
         new CleanWebpackPlugin([resolve('dist')], {
             root: __dirname,
@@ -90,8 +108,8 @@ module.exports = {
                 to: resolve(`${outDir}/sw.js`)
             },
             {
-                from: './src/app**/*',
-                to: resolve(outDir + '/app'),
+                from: './src/templates**/*',
+                to: resolve(outDir + '/templates'),
                 flatten: true
             },
             {

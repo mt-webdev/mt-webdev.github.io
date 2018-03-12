@@ -1,7 +1,43 @@
 @import "variables";
 
+@mixin xs-media ($target: screen){
+    @media #{$target} and (max-width: calc($xsSize - 1)) {
+        @content;
+    }
+}
+
+@mixin sm-media ($target: all){
+    @media #{$target} and (min-width: $xsSize){
+        @content;
+    }
+}
+
+@mixin md-media ($target: all){
+    @media #{$target} and (min-width: $mdSize) {
+        @content;
+    }
+}
+
+@mixin lg-media ($target: all){
+    @media #{$target} and (min-width: $lgSize)  {
+        @content;
+    }
+}
+
+@mixin xl-media($target: all) {
+    @media #{$target} and (min-width: $xlSize) {
+        @content;
+    }
+}
+
+@mixin media-print {
+    @media print {
+        @content;
+    }
+}
+
 @mixin levels {
-    @for $i from 1 through 5 {
+    @for $i from 1 through 3 {
         span#{"[class*='" + $i + "']"}:before {
             @if $i == 1 {
                 content: $levelRatingIcon;
@@ -11,12 +47,6 @@
             }
             @if $i == 3 {
                 content: "#{$levelRatingIcon}#{$levelRatingIcon}#{$levelRatingIcon}";
-            }
-            @if $i == 4 {
-                content: "#{$levelRatingIcon}#{$levelRatingIcon}#{$levelRatingIcon}#{$levelRatingIcon}";
-            }
-            @if $i == 5 {
-                content: "#{$levelRatingIcon}#{$levelRatingIcon}#{$levelRatingIcon}#{$levelRatingIcon}#{$levelRatingIcon}";
             }
         }
     }
@@ -30,8 +60,12 @@
     legend {
         font-family: $mainFont;
         padding: 0 8px;
+        font-size: 30px;
+        background-color: $backColor;
 
-        font-size: 36px;
+        @include md-media {
+            font-size: 36px;
+        }
 
         i {
             display: inline-flex;
@@ -41,8 +75,13 @@
             color: $icoForeground;
             background-color: $icoBackground;
             border-radius: 50%;
-            height: 60px;
-            width: 60px;
+            height: 50px;
+            width: 50px;
+
+            @include md-media {
+                height: 60px;
+                width: 60px;
+            }
         }
     }
 }
@@ -52,14 +91,63 @@
     padding: 0;
     margin: 0;
     display: grid;
-    grid-template-columns: 150px 1fr auto;
-    grid-template-areas: "left-li middle-li right-li";
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    grid-template-areas: "project-date project-role" "project-desc project-desc";
+    grid-row-gap: 10px;
+
+    @include md-media {
+        grid-template-columns: 150px 1fr auto;
+        grid-template-areas: "project-date project-desc project-role";
+        grid-template-rows: none;
+    }
+
+    li:nth-of-type(1) {
+        grid-area: project-date;
+    }
 
     li:nth-of-type(2) {
+        grid-area: project-desc;
         font-weight: bold;
+    }
+
+    li:nth-of-type(3) {
+        grid-area: project-role;
     }
 
     li {
         padding: 2px 10px;
+        color: #000;
+        text-decoration: none;
+    }
+}
+
+@mixin li-skills {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+    grid-column-gap: 10px;
+    align-items: center;
+
+    @include md-media {
+        justify-content: space-between;
+        grid-template-columns: auto auto;
+    }
+
+    @include levels;
+
+    span:first-child {
+        font-size: 12px;
+        color: $starColor;
+        justify-self: end;
+    }
+
+    span:last-child {
+        justify-self: start;
+    }
+
+
+    span[class$="+"] {
+        color: $superStarColor;
     }
 }

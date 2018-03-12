@@ -1,7 +1,7 @@
-import { htmlTemplates } from './html-template.const';
-import { textToHtml } from './utils/index';
+import { updateServiceWorker } from './update-service-worker';
+import { htmlTemplates, skipWaiting } from './utils/constants/index';
+import { textToHtml, updateServiceWorkerToast } from './utils/index';
 import './styles';
-import { updateServiceWorkerToast } from './utils/index';
 
 class Main {
     get rootSelector() { return 'APP-ROOT'; };
@@ -19,14 +19,12 @@ class Main {
 
     async updateSW() {
         try {
-            const registration = await navigator.serviceWorker.getRegistration();
-            if (await registration.waiting && await registration.waiting.state === 'installed') {
-                const clickedYes = updateServiceWorkerToast();
-                if (await clickedYes) {
-                    await registration.update().then(() => window.location.reload())
-                        .catch(err => console.log('err', err));
-                }
-            }
+            var refreshing;
+            navigator.serviceWorker.addEventListener('controllerchange', function () {
+                if (refreshing) return;
+                window.location.reload();
+                refreshing = true;
+            });
         } catch (error) {
             alert(error);
         }
@@ -58,9 +56,11 @@ class Main {
     }
 
     async fetchHtmlTemplate(): Promise<any> {
-        return window['fetch'].call(window, this.entryPoint);
+        return window.fetch(this.entryPoint);
     }
 }
+
+updateServiceWorker();
 
 const main = new Main();
 main.init();
