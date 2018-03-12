@@ -60,7 +60,7 @@ class Main {
     }
 }
 
-// updateServiceWorker();
+updateServiceWorker();
 
 const main = new Main();
 main.init();
