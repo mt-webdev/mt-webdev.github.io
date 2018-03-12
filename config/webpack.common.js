@@ -95,8 +95,7 @@ module.exports = {
             }
         }),
         new HtmlWebpackPlugin({
-            template: 'src/index.html',
-            minify: true
+            template: 'src/index.html'
         }),
         new CleanWebpackPlugin([resolve('dist')], {
             root: __dirname,
