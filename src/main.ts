@@ -1,3 +1,4 @@
+import { updateServiceWorker } from './update-service-worker';
 import { htmlTemplates, skipWaiting } from './utils/constants/index';
 import { textToHtml, updateServiceWorkerToast } from './utils/index';
 import './styles';
@@ -24,19 +25,6 @@ class Main {
                 window.location.reload();
                 refreshing = true;
             });
-
-            navigator.serviceWorker.addEventListener('message', msg => console.log('msg', msg));
-
-            navigator.serviceWorker.getRegistration()
-                .then(registration => {
-                    if (registration.waiting && registration.waiting.state === 'installed') {
-                        updateServiceWorkerToast().then(clicked => {
-                            if (clicked) {
-                                registration.waiting.postMessage({ action: skipWaiting });
-                            }
-                        });
-                    }
-                });
         } catch (error) {
             alert(error);
         }
@@ -72,22 +60,7 @@ class Main {
     }
 }
 
-window['displayUpdateServiceWorkerToast'] = (worker) => {
-    console.log('worker', worker);
-};
-
-if (navigator.serviceWorker) {
-    navigator.serviceWorker.register('sw.js').then(function (registration) {
-        registration.addEventListener('updatefound', function (evt) { window['displayUpdateServiceWorkerToast'].apply(registration.waiting); });
-
-        console.log('reg', registration, !!registration.waiting);
-
-        if (registration.waiting) {
-            console.log('waiting', registration.waiting);
-            // window['displayUpdateServiceWorkerToast'].apply(registration.waiting);
-        }
-    });
-}
+updateServiceWorker();
 
 const main = new Main();
 main.init();
