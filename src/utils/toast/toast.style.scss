@@ -39,14 +39,16 @@ $noColor: hsl(10, $themeColor-saturation, $themeColor-lightness);
         &:last-of-type {
             background-color: $noColor;
             &:hover {
-                background-color: $noColor;
+                // background-color: $noColor;
+                background-color: lighten($noColor, 10%);
             }
         }
 
         &:first-of-type {
-            background-color: lighten($yesColor, 10%);
+            background-color: $yesColor;
+            // background-color: darken($yesColor, 10%);
             &:hover {
-                background-color: darken($yesColor, 10%);
+                background-color: lighten($yesColor, 10%);
             }
         }
     }
