@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const Autoprefixer = require('autoprefixer');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 const { CheckerPlugin } = require('awesome-typescript-loader');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
@@ -10,6 +11,7 @@ const UglifyWebpackPlugin = require('uglifyjs-webpack-plugin');
 
 const { resolve, outDir } = require('./helpers');
 
+const _EXCLUDES = /(node_modules)|(\.awcache)|(\.vscode)|(dist)/;
 
 module.exports = {
     entry: {
@@ -34,12 +36,12 @@ module.exports = {
         rules: [
             {
                 test: /\.ts?$/,
-                exclude: /(node_modules)/,
+                exclude: _EXCLUDES,
                 loader: 'awesome-typescript-loader'
             },
             {
                 test: /\.scss$/,
-                exclude: /(node_modules)/,
+                exclude: _EXCLUDES,
                 loader: ExtractTextPlugin.extract({
                     fallback: 'style-loader',
                     use: 'css-loader?-minimize!sass-loader'
@@ -47,7 +49,7 @@ module.exports = {
             },
             {
                 test: /\.css$/,
-                exclude: /(node_modules)/,
+                exclude: _EXCLUDES,
                 loader: ExtractTextPlugin.extract({
                     fallback: 'style-loader',
                     use: [
@@ -64,7 +66,7 @@ module.exports = {
             },
             {
                 test: /\.html$/,
-                exclude: /(node_modules)/,
+                exclude: _EXCLUDES,
                 loader: 'raw-loader',
                 exclude: [resolve('src/index.html')]
             },
@@ -74,7 +76,7 @@ module.exports = {
             },
             {
                 test: /(web\.manifest|manifest)\.json$/,
-                exclude: /(node_modules)/,
+                exclude: _EXCLUDES,
                 loader: 'url-loader',
                 options: {
                     mimeType: 'application/manifest+json'
@@ -83,10 +85,6 @@ module.exports = {
         ]
     },
     plugins: [
-        new UglifyWebpackPlugin({
-            parallel: true,
-            exclude: /(node_modules)|(\.awcache)|(config)/
-        }),
         new ExtractTextPlugin('[name].css'),
         new webpack.LoaderOptionsPlugin({
             minimize: true,
@@ -95,7 +93,12 @@ module.exports = {
             }
         }),
         new HtmlWebpackPlugin({
-            template: 'src/index.html'
+            inject: true,
+            template: 'src/index.html',
+            favicon: 'src/images/favicon.ico'
+        }),
+        new ScriptExtHtmlWebpackPlugin({
+            defaultAttribute: 'defer'
         }),
         new CleanWebpackPlugin([resolve('dist')], {
             root: __dirname,
@@ -117,10 +120,6 @@ module.exports = {
                 to: resolve(`${outDir}/manifest.json`)
             },
             {
-                from: './src/images/favicon.ico',
-                to: resolve(`${outDir}/favicon.ico`)
-            },
-            {
                 from: './src/images**/*',
                 to: resolve(outDir + '/images'),
                 flatten: true
@@ -128,6 +127,22 @@ module.exports = {
         ]),
         new CheckerPlugin() // needed for awesome-typescript-loader
     ],
+    optimization: {
+        minimizer: [
+            new UglifyWebpackPlugin({
+                exclude: /(node_modules)|(\.awcache)|(config)|(dist)/,
+                uglifyOptions: {
+                    compress: true,
+                    comments: false,
+                    beautify: false,
+                    sourceMap: true
+                }
+            })
+        ]
+    },
+    performance: {
+        hints: 'warning'
+    },
     devServer: {
         contentBase: './dist',
         port: 1234,

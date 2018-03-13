@@ -250,6 +250,7 @@ a, a:active, a:visited, a:hover {
 
                     h3  {
                         justify-self: end;
+                        margin: 0 0 10px 0;
 
                         @include md-media {
                             justify-self: inherit;
@@ -262,6 +263,7 @@ a, a:active, a:visited, a:hover {
                         grid-row-gap: 5px;
                         justify-content: space-evenly;
                         padding: 0;
+                        margin: 0;
                         list-style: none;
 
                         @include md-media {

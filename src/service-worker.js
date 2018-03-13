@@ -2,8 +2,8 @@ const appCache = 'mtwd-cv-0.0.21';
 
 const CACHED_FILES = [
     '/',
-    'app/home.html',
-    'app/notFound.html',
+    'templates/home.html',
+    'templates/notFound.html',
     'main.bundle.js',
     'vendor.bundle.js',
     'polyfills.bundle.js',
