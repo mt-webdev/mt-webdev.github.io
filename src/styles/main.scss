@@ -30,6 +30,9 @@ a, a:active, a:visited, a:hover {
 }
 
 @media print {
+    .hide-on-print {
+        display: none !important;
+    }
 
     .screen-only {
         display: none !important;
