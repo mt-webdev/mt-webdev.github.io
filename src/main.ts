@@ -39,7 +39,7 @@ class Main {
         this.htmlTemplate = textToHtml(await response.text());
         setTimeout(() => {
             this._setContentAfterLoad();
-        }, 2000);
+        }, 1500);
     }
 
     _setContentAfterLoad() {
