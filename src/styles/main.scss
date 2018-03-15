@@ -176,7 +176,7 @@ a, a:active, a:visited, a:hover {
 
             display: grid;
             grid-auto-rows: auto;
-            grid-row-gap: 20px;
+            grid-row-gap: 10px;
 
             .person-data--wrapper .person-data {
                 font-size: 17px;
@@ -197,6 +197,15 @@ a, a:active, a:visited, a:hover {
                 div {
                     display: grid;
                     grid-template-columns: 100px auto;
+
+                    @include md-print {
+                        grid-template-columns: none;
+                        grid-auto-flow: row;
+                    }
+
+                    @include lg-media {
+                        grid-template-columns: 100px auto;
+                    }
 
                     label {
                         font-weight: bold;
