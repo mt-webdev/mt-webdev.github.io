@@ -113,22 +113,20 @@
 
         #outdated-browser {
             display: none;
-        }
-
-        #outdated-browser div {
+            font-family: monospace;
+            height: 50px;
+            color: #fff;
+            font-weight: bold;
+            font-size: 24px;
+            background-color: #cc4c32;
             text-align: center;
+            line-height: 50px;
         }
 
-        #outdated-browser div span {
-            display: block;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            font-size: 22px;
-            margin-top: -120px;
-        }
-
-        #outdated-browser div+div {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            font-size: 18px;
+        #outdated-browser a {
+            color: #fff;
+            background-color: #333;
+            padding: 2px 5px;
         }
 
         @media screen and (min-width: 768px) {
@@ -147,24 +145,18 @@
             }
         }
     </style>
-<link rel="shortcut icon" href="favicon.ico"><link href="main.css" rel="stylesheet"><link href="vendor.css" rel="stylesheet"></head>
+<link rel="shortcut icon" href="favicon.ico"><link href="vendor.css" rel="stylesheet"><link href="main.css" rel="stylesheet"><link href="styles.css" rel="stylesheet"></head>
 
 <body>
-    <div id="shell" class="screen-only">
+    <div id="shell" class="hide-on-print">
         <img src="images/MTWD_384x384.svg" alt="Logo - MTWD" />
         <span>Marco Traspel - Web Developer</span>
         <div>Loading</div>
         <div class="loading"></div>
     </div>
-    <div id="outdated-browser" class="screen-only">
-        <div>
-            <img src="images/MTWD_384x384.svg" alt="Logo - MTWD" />
-            <span>Marco Traspel - Web Developer</span>
-        </div>
-        <div>
-            Leider ist Ihr Browser nicht in der Lage diese Seite korrekt darzustellen.
-            <a target="noopener" href="http://outdatedbrowser.com/en">Update?</a>
-        </div>
+    <div id="outdated-browser" class="hide-on-print">
+        Leider ist Ihr Browser nicht in der Lage diese Seite korrekt darzustellen.
+        <a target="noopener" href="http://outdatedbrowser.com/en">Update?</a>
     </div>
     <app-root></app-root>
 
@@ -172,11 +164,12 @@
         if (navigator.serviceWorker) {
             navigator.serviceWorker.register('sw.js');
         }
-        else {
+
+        if (document.body.style.grid !== '') {
             document.getElementById('outdated-browser').setAttribute('style', 'display: block');
             document.getElementById('shell').setAttribute('style', 'display: none');
         }
     </script>
-<script type="text/javascript" src="main.bundle.js" defer></script><script type="text/javascript" src="vendor.bundle.js" defer></script><script type="text/javascript" src="polyfills.bundle.js" defer></script></body>
+<script type="text/javascript" src="polyfills.bundle.js" defer></script><script type="text/javascript" src="vendor.bundle.js" defer></script><script type="text/javascript" src="main.bundle.js" defer></script><script type="text/javascript" src="styles.bundle.js" defer></script></body>
 
 </html>
