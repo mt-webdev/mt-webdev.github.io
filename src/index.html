@@ -113,22 +113,20 @@
 
         #outdated-browser {
             display: none;
-        }
-
-        #outdated-browser div {
+            font-family: monospace;
+            height: 50px;
+            color: #fff;
+            font-weight: bold;
+            font-size: 24px;
+            background-color: #cc4c32;
             text-align: center;
+            line-height: 50px;
         }
 
-        #outdated-browser div span {
-            display: block;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            font-size: 22px;
-            margin-top: -120px;
-        }
-
-        #outdated-browser div+div {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            font-size: 18px;
+        #outdated-browser a {
+            color: #fff;
+            background-color: #333;
+            padding: 2px 5px;
         }
 
         @media screen and (min-width: 768px) {
@@ -157,14 +155,8 @@
         <div class="loading"></div>
     </div>
     <div id="outdated-browser" class="hide-on-print">
-        <div>
-            <img src="images/MTWD_384x384.svg" alt="Logo - MTWD" />
-            <span>Marco Traspel - Web Developer</span>
-        </div>
-        <div>
-            Leider ist Ihr Browser nicht in der Lage diese Seite korrekt darzustellen.
-            <a target="noopener" href="http://outdatedbrowser.com/en">Update?</a>
-        </div>
+        Leider ist Ihr Browser nicht in der Lage diese Seite korrekt darzustellen.
+        <a target="noopener" href="http://outdatedbrowser.com/en">Update?</a>
     </div>
     <app-root></app-root>
 
@@ -172,7 +164,8 @@
         if (navigator.serviceWorker) {
             navigator.serviceWorker.register('sw.js');
         }
-        else {
+
+        if (document.body.style.grid !== '') {
             document.getElementById('outdated-browser').setAttribute('style', 'display: block');
             document.getElementById('shell').setAttribute('style', 'display: none');
         }
