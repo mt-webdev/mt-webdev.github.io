@@ -25,7 +25,7 @@ module.exports = {
         path: resolve(outDir),
         filename: '[name].bundle.js',
         sourceMapFilename: '[name].map',
-        chunkFilename: '[id].chunk.js',
+        chunkFilename: '[name].bundle.js',
         library: 'ac_[name]',
         libraryTarget: 'var',
     },
