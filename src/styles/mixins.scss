@@ -36,6 +36,16 @@
     }
 }
 
+@mixin md-print {
+    @include md-media {
+        @content;
+    }
+
+    @include media-print {
+        @content;
+    }
+}
+
 @mixin levels {
     @for $i from 1 through 3 {
         span#{"[class*='" + $i + "']"}:before {
@@ -63,8 +73,12 @@
         font-size: 30px;
         background-color: $backColor;
 
-        @include md-media {
+        @include md-print {
             font-size: 36px;
+        }
+
+        @include media-print {
+            background-color: #fff;
         }
 
         i {
@@ -78,7 +92,7 @@
             height: 50px;
             width: 50px;
 
-            @include md-media {
+            @include md-print {
                 height: 60px;
                 width: 60px;
             }
@@ -100,7 +114,7 @@
     grid-template-areas: "project-date project-role" "project-desc project-desc";
     grid-row-gap: 10px;
 
-    @include md-media {
+    @include md-print {
         grid-template-columns: 150px 1fr auto;
         grid-template-areas: "project-date project-desc project-role";
         grid-template-rows: none;
@@ -133,7 +147,7 @@
     grid-column-gap: 10px;
     align-items: center;
 
-    @include md-media {
+    @include md-print {
         justify-content: space-between;
         grid-template-columns: auto auto;
     }

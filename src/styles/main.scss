@@ -1,12 +1,15 @@
 @import "variables";
 @import "mixins";
 
+body {
+    margin: 0;
+}
+
 app-root {
     position: relative;
     display: grid;
     height: 100%;
     width: 100%;
-
 }
 
 a, a:active, a:visited, a:hover {
@@ -22,7 +25,7 @@ a, a:active, a:visited, a:hover {
 }
 
 .screen-only {
-    display: block !important;
+    display: inline-block !important;
 }
 
 .print-only {
@@ -62,7 +65,7 @@ a, a:active, a:visited, a:hover {
     grid-template-columns: 5% 1fr 5%;
     grid-template-areas: "s11 container s12";
 
-    @include md-media {
+    @include md-print {
         grid-template-columns: 15% 1fr 15%;
         grid-template-areas: "s11 container s12";
     }
@@ -77,12 +80,16 @@ a, a:active, a:visited, a:hover {
 
         display: grid;
         grid-template-columns: 1fr;
-        grid-template-rows: 0 220px auto;
+        grid-template-rows: 5px 140px auto;
         grid-row-gap: 15px;
         grid-template-areas:
                         "s21"
                         "header"
                         "content";
+
+        @include md-media {
+            grid-template-rows: 0 220px auto;
+        }
 
         .header {
             grid-area: header;
@@ -119,7 +126,7 @@ a, a:active, a:visited, a:hover {
                 justify-self: flex-start;
                 font-family: $mainFont;
 
-                @include md-media {
+                @include md-print {
                     font-size: 24px;
                 }
 
@@ -147,14 +154,14 @@ a, a:active, a:visited, a:hover {
                     > ul {
                         &:nth-of-type(even) {
                             background-color: darken($backColor, 2%);
-                            @include md-media {
+                            @include md-print {
                                 background-color: darken($backColor, 5%);
                             }
                         }
 
                         &:nth-of-type(odd) {
                             background-color: darken($backColor, 10%);
-                            @include md-media {
+                            @include md-print {
                                 background: none;
                             }
                         }
@@ -183,7 +190,7 @@ a, a:active, a:visited, a:hover {
                 grid-row-gap: 5px;
                 grid-column-gap: 40px;
 
-                @include md-media {
+                @include md-print {
                     grid-template-columns: auto auto;
                 }
 
@@ -227,7 +234,7 @@ a, a:active, a:visited, a:hover {
 
                 justify-content: space-evenly;
 
-                @include md-media {
+                @include md-print {
                     grid-template-areas: "legend legend";
                     grid-template-columns: 250px 250px;
                     grid-row-gap: 20px;
@@ -238,7 +245,7 @@ a, a:active, a:visited, a:hover {
                 }
 
                 header.legend {
-                    @include md-media {
+                    @include md-print {
                         grid-area: legend;
                     }
 
@@ -246,7 +253,7 @@ a, a:active, a:visited, a:hover {
                     grid-template-columns: .4fr 1fr;
                     align-items: center;
 
-                    @include md-media {
+                    @include md-print {
                         grid-template-rows: 1fr 1fr;
                         grid-template-columns: none;
                  }
@@ -255,7 +262,7 @@ a, a:active, a:visited, a:hover {
                         justify-self: end;
                         margin: 0 0 10px 0;
 
-                        @include md-media {
+                        @include md-print {
                             justify-self: inherit;
                         }
                     }
@@ -269,7 +276,7 @@ a, a:active, a:visited, a:hover {
                         margin: 0;
                         list-style: none;
 
-                        @include md-media {
+                        @include md-print {
                             grid-auto-flow: column;
                             grid-column-gap: 20px;
                             justify-content: space-between;
@@ -278,7 +285,7 @@ a, a:active, a:visited, a:hover {
                         li {
                             @include li-skills;
 
-                            @include md-media {
+                            @include md-print {
                                 justify-content: flex-start;
                                 grid-column-gap: 5px;
                                 line-height: 12px;
@@ -292,7 +299,7 @@ a, a:active, a:visited, a:hover {
                     grid-template-columns: .4fr 1fr;
                     align-items: center;
 
-                    @include md-media {
+                    @include md-print {
                         display: block;
                         grid-template-columns:none;
                         align-items: inherit;
@@ -303,7 +310,7 @@ a, a:active, a:visited, a:hover {
                         justify-self: end;
                         text-align: right;
 
-                        @include md-media {
+                        @include md-print {
                             justify-self: inherit;
                             text-align: inherit;
                         }
