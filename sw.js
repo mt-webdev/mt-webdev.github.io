@@ -1,16 +1,18 @@
-const appCache = 'mtwd-cv-0.0.25';
+const appCache = 'mtwd-cv-0.1.07';
 
 const CACHED_FILES = [
     '/',
     'templates/home.html',
     'templates/notFound.html',
     'main.bundle.js',
-    'vendor.bundle.js',
-    'polyfills.bundle.js',
     'main.css',
+    'vendor.bundle.js',
+    'vendor.css',
+    'polyfills.bundle.js',
     'images/MTWD_384x384.svg',
     'images/picture.jpg',
-    'vendor.css'
+    'styles.bundle.js',
+    'styles.css'
 ];
 
 
