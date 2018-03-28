@@ -19,7 +19,7 @@ export function updateServiceWorker() {
     };
 
     if (navigator.serviceWorker) {
-        navigator.serviceWorker.register('sw.js').then(registration => {
+        navigator.serviceWorker.register('sw.5bbf1f718941ebf88b6480f3686351d3.js').then(registration => {
             if (!navigator.serviceWorker.controller) {
                 return;
             }

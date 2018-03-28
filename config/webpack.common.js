@@ -109,7 +109,7 @@ module.exports = {
         new CopyWebpackPlugin([
             {
                 from: resolve('./src/service-worker.js'),
-                to: resolve(`${outDir}/sw.js`)
+                to: resolve(`${outDir}/sw.[hash].js`)
             },
             {
                 from: './src/templates**/*',

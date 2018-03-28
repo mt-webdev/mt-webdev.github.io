@@ -161,10 +161,6 @@
     <app-root></app-root>
 
     <script>
-        if (navigator.serviceWorker) {
-            navigator.serviceWorker.register('sw.js');
-        }
-
         if (document.body.style.grid !== '') {
             document.getElementById('outdated-browser').setAttribute('style', 'display: block');
             document.getElementById('shell').setAttribute('style', 'display: none');
