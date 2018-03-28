@@ -1,7 +1,6 @@
 import { updateServiceWorker } from './update-service-worker';
 import { htmlTemplates, skipWaiting } from './utils/constants/index';
 import { textToHtml, updateServiceWorkerToast } from './utils/index';
-import './styles';
 
 class Main {
     get rootSelector() { return 'APP-ROOT'; };

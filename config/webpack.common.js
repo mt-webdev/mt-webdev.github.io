@@ -15,9 +15,10 @@ const _EXCLUDES = /(node_modules)|(\.awcache)|(\.vscode)|(dist)/;
 
 module.exports = {
     entry: {
-        main: './src/main.ts',
+        polyfills: './src/polyfills.ts',
         vendor: './src/vendor.ts',
-        polyfills: './src/polyfills.ts'
+        main: './src/main.ts',
+        styles: './src/styles.ts'
     },
     devtool: 'inline-source-map',
     cache: true,
@@ -141,7 +142,7 @@ module.exports = {
         ]
     },
     performance: {
-        hints: 'warning'
+        hints: false
     },
     devServer: {
         contentBase: './dist',

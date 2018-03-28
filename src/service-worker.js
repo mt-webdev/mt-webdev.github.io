@@ -5,9 +5,10 @@ const CACHED_FILES = [
     'templates/home.html',
     'templates/notFound.html',
     'main.bundle.js',
-    'vendor.bundle.js',
-    'polyfills.bundle.js',
     'main.css',
+    'vendor.bundle.js',
+    'vendor.css',
+    'polyfills.bundle.js',
     'images/MTWD_384x384.svg',
     'src/images/picture.jpg',
     'src/images/picture_small.jpg',
@@ -17,7 +18,9 @@ const CACHED_FILES = [
     'src/icons/web-fonts-with-css/webfonts/fa-brands-400.woff',
     'src/icons/web-fonts-with-css/webfonts/fa-solid-900.ttf',
     'src/icons/web-fonts-with-css/webfonts/fa-brands-400.ttf',
-    'vendor.css'
+    'vendor.css',
+    'styles.bundle.js',
+    'styles.css'
 ];
 
 
