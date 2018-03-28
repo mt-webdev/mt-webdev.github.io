@@ -71,8 +71,8 @@ module.exports = {
                 exclude: [resolve('src/index.html')]
             },
             {
-                test: /\.(png|gif|woff|woff2|eot|ttf|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-                loaders: ['file-loader']
+                test: /\.(jpg|png|gif|woff|woff2|eot|ttf|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+                loaders: ['file-loader?name=[path][name].[ext]']
             },
             {
                 test: /(web\.manifest|manifest)\.json$/,
@@ -81,7 +81,7 @@ module.exports = {
                 options: {
                     mimeType: 'application/manifest+json'
                 }
-            }
+            },
         ]
     },
     plugins: [

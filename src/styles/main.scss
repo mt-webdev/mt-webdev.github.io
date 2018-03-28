@@ -77,12 +77,16 @@ a, a:active, a:visited, a:hover {
 
         display: grid;
         grid-template-columns: 1fr;
-        grid-template-rows: 0 220px auto;
+        grid-template-rows: 0 150px auto;
         grid-row-gap: 15px;
         grid-template-areas:
                         "s21"
                         "header"
                         "content";
+
+        @include md-media {
+            grid-template-rows: 0 220px auto;
+        }
 
         .header {
             grid-area: header;
@@ -102,16 +106,33 @@ a, a:active, a:visited, a:hover {
                 align-items: center;
                 justify-content: center;
 
-                img {
+                &:before {
+                    content: "";
+                    display: inline-block;
+                    height: 130px;
                     width: 130px;
-                    border-radius: 50%;
                     border: 3px solid $themeColor;
+                    background-image: url("./../images/picture.jpg");
+                    background-size: 100% 100%;
+                    border-radius: 50%;
 
                     @include md-media {
-                        width: 200px;
-                        border: 4px solid $themeColor;
-                    }
+                                height: 200px;
+                                width: 200px;
+                                border: 4px solid $themeColor;
+                            }
                 }
+
+                // img {
+                //     width: 130px;
+                //     border-radius: 50%;
+                //     border: 3px solid $themeColor;
+
+                //     @include md-media {
+                //         width: 200px;
+                //         border: 4px solid $themeColor;
+                //     }
+                // }
             }
 
             .name {
