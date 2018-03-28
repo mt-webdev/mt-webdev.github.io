@@ -1,4 +1,4 @@
-const appCache = 'mtwd-cv-0.1.07';
+const appCache = 'mtwd-cv-0.1.10';
 
 const CACHED_FILES = [
     '/',
@@ -10,7 +10,15 @@ const CACHED_FILES = [
     'vendor.css',
     'polyfills.bundle.js',
     'images/MTWD_384x384.svg',
-    'images/picture.jpg',
+    'src/images/picture.jpg',
+    'src/images/picture_small.jpg',
+    'src/icons/web-fonts-with-css/webfonts/fa-solid-900.woff2',
+    'src/icons/web-fonts-with-css/webfonts/fa-brands-400.woff2',
+    'src/icons/web-fonts-with-css/webfonts/fa-solid-900.woff',
+    'src/icons/web-fonts-with-css/webfonts/fa-brands-400.woff',
+    'src/icons/web-fonts-with-css/webfonts/fa-solid-900.ttf',
+    'src/icons/web-fonts-with-css/webfonts/fa-brands-400.ttf',
+    'vendor.css',
     'styles.bundle.js',
     'styles.css'
 ];
