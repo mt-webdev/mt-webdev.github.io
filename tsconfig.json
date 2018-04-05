@@ -6,12 +6,23 @@
         "pretty": true,
         "rootDir": "./src",
         "sourceMap": true,
-        "target": "es2015",
+        "lib": [
+            "dom",
+            "es6"
+        ],
+        "target": "es5",
+        "module": "es2015",
+        "moduleResolution": "node",
     },
     "files": [
         "./src/typings.d.ts"
     ],
     "awesomeTypescriptLoaderOptions": {
         "useCache": true,
-    }
+    },
+    "exclude": [
+        "node_modules",
+        "dist",
+        ".awcache"
+    ]
 }

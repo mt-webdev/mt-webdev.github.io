@@ -1,18 +1,24 @@
 const path = require('path');
 const webpack = require('webpack');
+const Autoprefixer = require('autoprefixer');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 const { CheckerPlugin } = require('awesome-typescript-loader');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const UglifyWebpackPlugin = require('uglifyjs-webpack-plugin');
 
 const { resolve, outDir } = require('./helpers');
 
+const _EXCLUDES = /(node_modules)|(\.awcache)|(\.vscode)|(dist)/;
 
 module.exports = {
     entry: {
+        polyfills: './src/polyfills.ts',
+        vendor: './src/vendor.ts',
         main: './src/main.ts',
-        vendor: './src/vendor.ts'
+        styles: './src/styles.ts'
     },
     devtool: 'inline-source-map',
     cache: true,
@@ -20,7 +26,7 @@ module.exports = {
         path: resolve(outDir),
         filename: '[name].bundle.js',
         sourceMapFilename: '[name].map',
-        chunkFilename: '[id].chunk.js',
+        chunkFilename: '[name].bundle.js',
         library: 'ac_[name]',
         libraryTarget: 'var',
     },
@@ -31,23 +37,28 @@ module.exports = {
         rules: [
             {
                 test: /\.ts?$/,
-                exclude: /(node_modules)/,
+                exclude: _EXCLUDES,
                 loader: 'awesome-typescript-loader'
             },
             {
                 test: /\.scss$/,
-                exclude: /(node_modules)/,
+                exclude: _EXCLUDES,
                 loader: ExtractTextPlugin.extract({
                     fallback: 'style-loader',
-                    use: 'css-loader!sass-loader'
+                    use: 'css-loader?-minimize!sass-loader'
                 })
             },
             {
                 test: /\.css$/,
-                exclude: /(node_modules)/,
+                exclude: _EXCLUDES,
                 loader: ExtractTextPlugin.extract({
                     fallback: 'style-loader',
-                    use: 'css-loader'
+                    use: [
+                        {
+                            loader: 'css-loader',
+                            options: { minimize: true }
+                        }
+                    ]
                 })
             },
             {
@@ -56,28 +67,39 @@ module.exports = {
             },
             {
                 test: /\.html$/,
-                exclude: /(node_modules)/,
+                exclude: _EXCLUDES,
                 loader: 'raw-loader',
                 exclude: [resolve('src/index.html')]
             },
             {
-                test: /\.(png|gif|woff|woff2|eot|ttf|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-                loaders: ['file-loader']
+                test: /\.(jpg|png|gif|woff|woff2|eot|ttf|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+                loaders: ['file-loader?name=[path][name].[ext]']
             },
             {
                 test: /(web\.manifest|manifest)\.json$/,
-                exclude: /(node_modules)/,
+                exclude: _EXCLUDES,
                 loader: 'url-loader',
                 options: {
                     mimeType: 'application/manifest+json'
                 }
-            }
+            },
         ]
     },
     plugins: [
         new ExtractTextPlugin('[name].css'),
+        new webpack.LoaderOptionsPlugin({
+            minimize: true,
+            options: {
+                postcss: [Autoprefixer]
+            }
+        }),
         new HtmlWebpackPlugin({
+            inject: true,
             template: 'src/index.html',
+            favicon: 'src/images/favicon.ico'
+        }),
+        new ScriptExtHtmlWebpackPlugin({
+            defaultAttribute: 'defer'
         }),
         new CleanWebpackPlugin([resolve('dist')], {
             root: __dirname,
@@ -87,11 +109,11 @@ module.exports = {
         new CopyWebpackPlugin([
             {
                 from: resolve('./src/service-worker.js'),
-                to: resolve(`${outDir}/sw.js`)
+                to: resolve(`${outDir}/sw.[hash].js`)
             },
             {
-                from: './src/app**/*',
-                to: resolve(outDir + '/app'),
+                from: './src/templates**/*',
+                to: resolve(outDir + '/templates'),
                 flatten: true
             },
             {
@@ -106,6 +128,22 @@ module.exports = {
         ]),
         new CheckerPlugin() // needed for awesome-typescript-loader
     ],
+    optimization: {
+        minimizer: [
+            new UglifyWebpackPlugin({
+                exclude: /(node_modules)|(\.awcache)|(config)|(dist)/,
+                uglifyOptions: {
+                    compress: true,
+                    comments: false,
+                    beautify: false,
+                    sourceMap: true
+                }
+            })
+        ]
+    },
+    performance: {
+        hints: false
+    },
     devServer: {
         contentBase: './dist',
         port: 1234,

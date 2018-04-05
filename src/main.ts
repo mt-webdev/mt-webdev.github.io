@@ -1,6 +1,6 @@
-import { htmlTemplates } from './html-template.const';
-import { textToHtml } from './utils/index';
-import './styles';
+import { updateServiceWorker } from './update-service-worker';
+import { htmlTemplates, skipWaiting } from './utils/constants/index';
+import { textToHtml, updateServiceWorkerToast } from './utils/index';
 
 class Main {
     get rootSelector() { return 'APP-ROOT'; };
@@ -12,6 +12,21 @@ class Main {
 
     constructor() {
         this.rootElement = document.getElementsByTagName(this.rootSelector)[0];
+
+        this.updateSW();
+    }
+
+    async updateSW() {
+        try {
+            var refreshing;
+            navigator.serviceWorker.addEventListener('controllerchange', function () {
+                if (refreshing) return;
+                window.location.reload();
+                refreshing = true;
+            });
+        } catch (error) {
+            console.error(error);
+        }
     }
 
     async init() {
@@ -23,7 +38,7 @@ class Main {
         this.htmlTemplate = textToHtml(await response.text());
         setTimeout(() => {
             this._setContentAfterLoad();
-        }, 2000);
+        }, 1500);
     }
 
     _setContentAfterLoad() {
@@ -40,9 +55,11 @@ class Main {
     }
 
     async fetchHtmlTemplate(): Promise<any> {
-        return window['fetch'].call(window, this.entryPoint);
+        return window.fetch(this.entryPoint);
     }
 }
+
+updateServiceWorker();
 
 const main = new Main();
 main.init();
