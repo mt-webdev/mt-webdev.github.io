@@ -1,4 +1,7 @@
 # mtwd-cv
+
+> See my ["current"](https://mt-web.dev) CV (outdated as well (╯°□°）╯︵ ┻━┻)
+
 My CV
 
 
